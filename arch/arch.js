@@ -21,7 +21,7 @@ async function proxy(event) {
     colo === "FUK" ||
     colo === "OKA"
   ) {
-    url.hostname = "mirrors.cat.net";
+    url.hostname = "mirror.nishi.network";
   } else if (country === "HK" || colo === "HKG") {
     url.hostname = "mirror-hk.koddos.net";
   } else if (country === "CA") {
