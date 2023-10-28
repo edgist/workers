@@ -85,6 +85,20 @@ async function proxy(event) {
           element.append(openGraphMetaTags, { html: true });
         },
       })
+      .on("body", {
+        element(element) {
+          if (url.pathname === "/archlinux/") {
+            element.append(
+              `
+              <div style="position: relative; bottom: 5px;font-size: 16px; text-align: left;">
+              <p>Country: ${country}, Colo: ${colo}, Mirror: ${url.hostname}</p>
+              </div>
+            `,
+              { html: true }
+            );
+          }
+        },
+      })
       .transform(response);
 
     return new Response(modifiedResponse.body, {
