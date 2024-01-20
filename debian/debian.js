@@ -10,7 +10,14 @@ async function proxy(event) {
     event.request.headers.get(key);
 
   let url = new URL(event.request.url);
-  url.hostname = "deb.debian.org";
+  const country = event.request.cf.country;
+  const colo = event.request.cf.colo;
+
+  if (country === "HK" || colo === "HKG") {
+    url.hostname = "mirror.xtom.com.hk";
+  } else {
+    url.hostname = "deb.debian.org";
+  }
 
   let UA = getReqHeader("User-Agent").toLowerCase();
 
